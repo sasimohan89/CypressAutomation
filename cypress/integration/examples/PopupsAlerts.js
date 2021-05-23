@@ -15,5 +15,7 @@ describe('My first test suite', function() {
         expect(str).to.equal("Hello , Are you sure you want to confirm?")
       })
       
+      //open tab in same page
+      cy.get('#opentab').invoke('removeAttr','target').click()
     });
   });
