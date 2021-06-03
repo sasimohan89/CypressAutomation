@@ -17,5 +17,11 @@ describe('My first test suite', function() {
       
       //open tab in same page
       cy.get('#opentab').invoke('removeAttr','target').click()
+
+      //validate url
+      cy.url().should('include', 'rahulshettyacademy')
+
+      //back browser
+      cy.go('back')
     });
   });

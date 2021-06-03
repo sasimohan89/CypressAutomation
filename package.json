@@ -11,5 +11,8 @@
   "dependencies": {
     "cypress": "^7.3.0",
     "npm": "^7.13.0"
+  },
+  "devDependencies": {
+    "cypress-iframe": "^1.0.1"
   }
 }
