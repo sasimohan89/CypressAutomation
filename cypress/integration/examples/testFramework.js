@@ -56,12 +56,34 @@ describe('My first test suite', function() {
 
         });
 
+        //go to cart page
         products.checkoutButton().click()
+
+
+        var sum = 0
+        cy.get('tr td:nth-child(4) strong').each(($el, index, $list) => {
+
+            const amount = $el.text()
+            var res = amount.split(' ')
+            res = res[1].trim()
+            sum = Number(sum) + Number(res)
+
+        })
+        cy.get('h3 strong').then(function(element) {
+
+            const amount = element.text()
+            var res = amount.split(' ')
+            var total = res[1].trim()
+            expect(Number(total)).to.equal(sum)
+
+        })
+
         cy.contains('Checkout').click()
         cy.get('#country').type('India')
         cy.get('.suggestions > ul > li > a').click()
         cy.get('.checkbox > label').click()
         cy.get('input[type="submit"]').click()
+
         //cy.get('.alert').should('have.text', 'Success! Thank you! Your order will be delivered in next few weeks :-).')
 
         cy.get('.alert').then(function(element) {
@@ -69,6 +91,8 @@ describe('My first test suite', function() {
             const actualText = element.text()
             expect(actualText.includes('Success!')).to.be.true
         })
+
+
 
         //cy.pause() to debug
 
