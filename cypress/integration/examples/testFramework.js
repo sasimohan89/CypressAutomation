@@ -1,5 +1,5 @@
 /// <reference types="Cypress" />
-/// <reference types="cypress-iframe" />
+// / <reference types="cypress-iframe" />
 import 'cypress-iframe'
 // import { includes } from 'cypress/types/lodash'
 
@@ -46,6 +46,8 @@ describe('My first test suite', function() {
 
         //go to shop page
         homePage.getShopTab().click()
+        Cypress.config('defaultCommandTimeout', 100000)
+
 
         //loop and add item to cart
         this.data.productName.forEach(function(element) {
@@ -56,7 +58,17 @@ describe('My first test suite', function() {
 
         products.checkoutButton().click()
         cy.contains('Checkout').click()
+        cy.get('#country').type('India')
+        cy.get('.suggestions > ul > li > a').click()
+        cy.get('.checkbox > label').click()
+        cy.get('input[type="submit"]').click()
+        //cy.get('.alert').should('have.text', 'Success! Thank you! Your order will be delivered in next few weeks :-).')
 
+        cy.get('.alert').then(function(element) {
+
+            const actualText = element.text()
+            expect(actualText.includes('Success!')).to.be.true
+        })
 
         //cy.pause() to debug
 
