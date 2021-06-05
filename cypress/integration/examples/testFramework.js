@@ -3,8 +3,8 @@
 import 'cypress-iframe'
 // import { includes } from 'cypress/types/lodash'
 
-import HomePage from '../pageObjects/HomePage'
-import Products from '../pageObjects/Products'
+import HomePage from '../../support/pageObjects/HomePage'
+import Products from '../../support/pageObjects/Products'
 
 describe('My first test suite', function() {
 
@@ -30,7 +30,7 @@ describe('My first test suite', function() {
         const homePage = new HomePage()
         const products = new Products()
       
-        cy.visit('https://rahulshettyacademy.com/angularpractice/')
+        cy.visit(Cypress.env('url') + '/angularpractice/')
 
         homePage.getNameTextBox().type(this.data.name)
         homePage.getGender().select(this.data.gender)
