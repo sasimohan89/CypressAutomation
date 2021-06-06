@@ -80,6 +80,7 @@ describe('My first test suite', function() {
 
         cy.contains('Checkout').click()
         cy.get('#country').type('India')
+        cy.wait('8000')
         cy.get('.suggestions > ul > li > a').click()
         cy.get('.checkbox > label').click()
         cy.get('input[type="submit"]').click()
